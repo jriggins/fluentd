@@ -120,6 +120,7 @@ module Fluent
     def submit_flush
       @mutex.synchronize {
         @next_time = 0
+        @next_retry_time = Engine.now
         @cond.signal
       }
       Thread.pass
